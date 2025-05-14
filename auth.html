@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>التحقق</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("https://imamu.edu.sa/PublishingImages/imamU.jpg") no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(8px);
+      z-index: 0;
+    }
+
+    .box {
+      background-color: grey;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .btn {
+      background-color: #f97316;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #ea580c;
+    }
+
+    .separator {
+      margin: 1rem 0;
+      border-top: 1px solid #555;
+    }
+
+    .social-login {
+      margin: 1rem 0;
+    }
+
+    .gmail-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .gmail-btn img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .gmail-btn img:hover {
+      transform: scale(1.1);
+    }
+
+    .create-account {
+      margin-top: 1rem;
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    .create-account a {
+      color: #f97316;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .create-account a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box">
+    <button class="close-btn" onclick="window.location.href='signup.html'">×</button>
+    <h2>تسجيل الدخول / إنشاء حساب</h2>
+    <form id="login-form" onsubmit="return validateForm()">
+      <input type="email" id="email" placeholder="البريد الإلكتروني" required />
+      <input type="password" id="password" placeholder="كلمة المرور" required />
+
+      <button class="btn" type="submit">تسجيل الدخول</button>
+      <div class="separator"></div>
+      <div class="social-login">
+        <button class="gmail-btn" onclick="alert('ميزة تسجيل Gmail غير مفعلة')">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Gmail Logo">
+        </button>
+      </div>
+
+      <p class="create-account">
+        ليس لديك حساب؟ <a href="newacc.html">إنشاء حساب جديد</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+      const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+
+      if (!email || !password) {
+        alert("يرجى تعبئة جميع الحقول");
+        return false;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert("يرجى إدخال بريد إلكتروني صالح يحتوي على @");
+        return false;
+      }
+
+      if (!passwordRegex.test(password)) {
+        alert("كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل، بما في ذلك رمز، رقم، حرف كبير وصغير.");
+        return false;
+      }
+
+      
+      window.location.href = 'homepage.html';
+      return false; 
+    }
+  </script>
+</body>
+</html>
